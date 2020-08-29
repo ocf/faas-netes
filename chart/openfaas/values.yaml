@@ -13,7 +13,7 @@ clusterRole: false            # Set to true to have OpenFaaS administrate multip
 psp: false
 securityContext: true
 basic_auth: true
-generateBasicAuth: false
+generateBasicAuth: true
 
 # image pull policy for openfaas components, can change to `IfNotPresent` in offline env
 openfaasImagePullPolicy: "Always"
@@ -148,17 +148,17 @@ nats:
   enableMonitoring: false
   metrics:
     enabled: false
-    image: synadia/prometheus-nats-exporter:0.6.2 
+    image: synadia/prometheus-nats-exporter:0.6.2
   resources:
     requests:
       memory: "120Mi"
 
 # ingress configuration
 ingress:
-  enabled: false
+  enabled: true
   # Used to create Ingress record (should be used with exposeServices: false).
   hosts:
-    - host: gateway.openfaas.local  # Replace with gateway.example.com if public-facing
+    - host: lambda.ocf.berkeley.edu  # Replace with gateway.example.com if public-facing
       serviceName: gateway
       servicePort: 8080
       path: /
